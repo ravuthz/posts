@@ -8,21 +8,8 @@ This post will show you how to list the listening **ports** in **Linux**, **MacO
 
 In Linux, the **netstat**, **lsof** or **ss** command can be used to find open or listening ports.
 
-1. Using netstat:
 
-```bash
-sudo netstat -tuln
-```
-
-Options:
-
--t : Show TCP ports.
--u : Show UDP ports.
--l : Show only listening ports.
--n : Show numerical addresses instead of resolving hostnames.
-
-
-2. Using lsof:
+1. Using lsof:
 
 ```bash
 sudo lsof -i -P -n | grep LISTEN
@@ -35,12 +22,24 @@ Options:
 -n: Show numerical addresses instead of resolving hostnames.
 | grep LISTEN: Pipes (|) the output to grep to filter and display only lines containing the word "LISTEN", which indicates listening network ports.
 
+2. Using netstat:
+
+```bash
+sudo netstat -tuln | grep LISTEN
+```
+
+Options:
+
+-t : Show TCP ports.
+-u : Show UDP ports.
+-l : Show only listening ports.
+-n : Show numerical addresses instead of resolving hostnames.
 
 3. Using ss:
 Is a modern alternative to netstat and is generally faster.
 
 ```bash
-sudo ss -tuln
+sudo ss -tuln | grep LISTEN
 ```
 
 Options:
